@@ -1,6 +1,9 @@
 import React, { Component } from 'react'
 import { withHistory, Link } from 'react-router-dom'
 import { createContainer } from 'meteor/react-meteor-data'
+import Button from '@material-ui/core/Button';
+import Lock from '@material-ui/icons/Lock'
+import Email from '@material-ui/icons/Email'
 
 export default class LoginPage extends Component {
     constructor(props) {
@@ -29,47 +32,60 @@ export default class LoginPage extends Component {
     render() {
         const error = this.state.error;
         return (
-            <div className="modal show">
-                <div className="modal-dialog">
-                    <div className="modal-content">
-                        <div className="modal-header">
-                            <h1 className="text-center">Login</h1>
+            <div className="body-wrapper">
+                <section id="login-section">
+                    <div className="login-container">
+                        <div className="login-show text-white text-center login">
+                            <div className="overlay"></div>
+                            <div className="show-body">
+                                <h1>Declaration of Loss Online</h1>
+                                <p className="lead">Thank you for using your login credentials.
+                                  If you are not yet a member, please
+                                </p>
+                                <button className="btn btn-outline-light btn-reg login">
+                                    <Link to="/signup">Register Here</Link>
+                                </button>
+                            </div>
                         </div>
-                        <div className="modal-body">
-                            {error.length > 0 ?
-                                <div className="alert alert-danger fade in">{error}</div>
-                                : ''}
-                            <form id="login-form"
-                                className="form col-md-12 center-block"
-                                onSubmit={this.handleSubmit}>
-                                <div className="form-group">
-                                    <input type="email"
-                                        id="login-email"
-                                        className="form-control input-lg"
-                                        placeholder="email" />
+
+                        <div className="login-form">
+                            <div className="login-header">
+                                <div className="logo">
+                                    <img src="images/logo.svg" alt="" />
                                 </div>
-                                <div className="form-group">
-                                    <input type="password"
-                                        id="login-password"
-                                        className="form-control input-lg"
-                                        placeholder="password" />
+                                <div className="lan-select">
+                                    en
                                 </div>
-                                <div className="form-group text-center">
-                                    <input type="submit"
-                                        id="login-button"
-                                        className="btn btn-primary btn-lg btn-block"
-                                        value="Login" />
-                                </div>
-                                <div className="form-group text-center">
-                                    <p className="text-center">
-                                        Don't have an account? Register <Link to="/signup">here</Link>
-                                    </p>
-                                </div>
-                            </form>
+
+                            </div>
+                            <div className="login-body login">
+                                {error.length > 0 ?
+                                    <div className="alert alert-danger fade in">{error}</div>
+                                    : ''}
+
+                                <form id="login-form" onSubmit={this.handleSubmit}>
+                                    <div className="form-group with-icon mb-4">
+                                        <input id="login-email" type="text" name="email" className="form-control" />
+                                        <label >Email</label>
+                                        <Email />
+                                    </div>
+                                    <div className="form-group with-icon mb-4">
+                                        <input id="login-password" type="password" name="password" className="form-control" />
+                                        <label >Password</label>
+                                        <Lock />
+                                    </div>
+                                    <div className="bottom">
+                                        <a href="/" className="dslink">Forget Password?</a>
+                                        <Button variant="contained" color="primary">
+                                            Login
+                                        </Button>
+                                    </div>
+                                </form>
+                            </div>
+
                         </div>
-                        <div className="modal-footer" style={{ borderTop: 0 }}></div>
                     </div>
-                </div>
+                </section>
             </div>
         );
     }

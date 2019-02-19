@@ -1,0 +1,9 @@
+html, body {
+  height: 100%;
+  padding: 0 !important;
+  margin: 0 !important
+}
+
+body {
+  font-family: 'Muli', 'Poppins', 'Open Sans'
+}
